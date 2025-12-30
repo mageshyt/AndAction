@@ -94,7 +94,7 @@ const Navbar: React.FC<NavbarWithSidebarProps> = ({
                   href={item.href}
                   className={`px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
                     item.isActive
-                      ? "gradient-text nav-active-underline"
+                      ? "gradient-text nav-active-underline text-center"
                       : "text-text-light-gray hover:text-white"
                   }`}
                 >
@@ -114,7 +114,7 @@ const Navbar: React.FC<NavbarWithSidebarProps> = ({
               <Search className="size-5" />
             </button>
 
-            {/* Sign-In (only show when logged out) */}
+            {/* Sign In (only show when logged out) */}
             {!user && status !== "loading" && (
               <Button
                 variant="primary"
@@ -124,7 +124,7 @@ const Navbar: React.FC<NavbarWithSidebarProps> = ({
                 }
                 className="btn2"
               >
-                Sign-In
+                Sign In
               </Button>
             )}
 
@@ -146,9 +146,9 @@ const Navbar: React.FC<NavbarWithSidebarProps> = ({
               >
                 <Image
                   src={
-                      user.role === "user"
+                      user.avatar && /^\d+$/.test(String(user.avatar))
                         ? `/avatars/${user.avatar}.png`
-                        : user.avatar ?? "/default-avatar.png"
+                        : user.avatar || "/default-avatar.png"
                     }
                   alt={user.firstName || "User"}
                   width={40}
